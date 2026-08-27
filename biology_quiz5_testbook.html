@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>50 Days Revision Series — Biology Quiz 5</title>
+<style>
+  :root{
+    --tb-purple:#6C4DE6;
+    --tb-purple-dark:#4B2FC4;
+    --tb-purple-light:#EFE9FD;
+    --tb-green:#1BA672;
+    --tb-green-bg:#E5F7EF;
+    --tb-red:#E24C4B;
+    --tb-red-bg:#FDECEC;
+    --tb-orange:#F5A623;
+    --tb-grey:#EAEAF0;
+    --tb-grey-dark:#8A8DA6;
+    --ink:#1F2333;
+    --muted:#6E7191;
+    --line:#E4E4EE;
+    --bg:#F4F4FA;
+    --white:#ffffff;
+    --radius:10px;
+    --shadow:0 4px 18px rgba(35,29,80,.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:16px 16px 40px;}
+  a{color:inherit;}
+  .hidden{display:none !important;}
+
+  /* ---------- Brand header (used on register/sets screens) ---------- */
+  .brandbar{
+    display:flex;align-items:center;gap:14px;
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:14px 20px;
+    box-shadow:var(--shadow);
+    margin-bottom:18px;
+    border:1px solid var(--line);
+  }
+  .brandbar img.logo{width:52px;height:52px;border-radius:50%;box-shadow:0 0 0 3px var(--tb-purple-light);flex:none;}
+  .brand-text .title{font-size:clamp(16px,2.2vw,20px);font-weight:800;color:var(--ink);line-height:1.25;}
+  .brand-text .title .accent{color:var(--tb-purple);}
+  .brand-text .subtitle{font-size:13px;color:var(--muted);margin-top:2px;font-weight:600;}
+  .userchip{
+    margin-left:auto;background:var(--tb-purple-light);color:var(--tb-purple-dark);
+    padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;
+    display:flex;align-items:center;gap:8px;white-space:nowrap;
+  }
+  .userchip .dot{width:8px;height:8px;border-radius:50%;background:var(--tb-purple);}
+
+  /* ---------- Cards ---------- */
+  .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line);}
+  .center-stage{display:flex;align-items:center;justify-content:center;min-height:60vh;}
+
+  /* ---------- Registration ---------- */
+  .reg-card{padding:40px 36px;max-width:440px;width:100%;text-align:center;}
+  .reg-card img.logo-lg{width:90px;height:90px;border-radius:50%;box-shadow:0 0 0 4px var(--tb-purple-light);margin-bottom:14px;}
+  .reg-card h1{font-size:19px;margin:6px 0 2px;color:var(--ink);}
+  .reg-card p.lede{color:var(--muted);font-size:13.5px;margin:0 0 20px;}
+  .field-label{text-align:left;font-size:12px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
+  input[type=text]{
+    width:100%;padding:12px 14px;border-radius:8px;border:1.5px solid var(--line);
+    font-size:15px;outline:none;transition:.15s;background:#fafafe;
+  }
+  input[type=text]:focus{border-color:var(--tb-purple);box-shadow:0 0 0 3px rgba(108,77,230,.15);}
+  .err{color:var(--tb-red);font-size:12px;margin-top:6px;text-align:left;min-height:16px;font-weight:600;}
+
+  .btn{border:none;border-radius:8px;padding:11px 20px;font-size:14px;font-weight:700;cursor:pointer;transition:.15s;}
+  .btn-primary{background:var(--tb-purple);color:#fff;width:100%;margin-top:16px;}
+  .btn-primary:hover{background:var(--tb-purple-dark);}
+  .btn-purple-outline{background:#fff;color:var(--tb-purple);border:1.5px solid var(--tb-purple);}
+  .btn-purple-outline:hover{background:var(--tb-purple-light);}
+  .btn-red{background:var(--tb-red);color:#fff;}
+  .btn-red:hover{background:#c93938;}
+  .btn-grey{background:var(--tb-grey);color:var(--ink);}
+  .btn-grey:hover{background:#dedee9;}
+  .btn-sm{padding:8px 14px;font-size:12.5px;border-radius:7px;}
+  .btn:disabled{opacity:.45;cursor:not-allowed;}
+
+  /* ---------- Set selection ---------- */
+  .section-title{font-size:18px;font-weight:800;color:var(--ink);margin:4px 0 4px;}
+  .section-sub{color:var(--muted);font-size:13px;margin-bottom:18px;}
+  .set-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+  .set-card{padding:20px;position:relative;overflow:hidden;transition:.15s;}
+  .set-card:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(35,29,80,.12);}
+  .set-card .ribbon{
+    position:absolute;top:12px;right:-30px;background:var(--tb-green);color:#fff;
+    font-size:10px;font-weight:800;padding:4px 32px;transform:rotate(35deg);
+  }
+  .set-card .set-num{
+    width:38px;height:38px;border-radius:8px;background:var(--tb-purple-light);
+    color:var(--tb-purple-dark);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;margin-bottom:10px;
+  }
+  .set-card h3{margin:0 0 4px;font-size:15.5px;color:var(--ink);}
+  .set-card .set-desc{font-size:12px;color:var(--muted);margin-bottom:12px;}
+  .set-card .meta-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .pill{background:var(--tb-grey);color:var(--ink);font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;}
+  .pill.score{background:var(--tb-green-bg);color:var(--tb-green);}
+  .set-card .actions{display:flex;gap:8px;flex-wrap:wrap;}
+
+  /* ================= INSTRUCTIONS SCREEN (Testbook style) ================= */
+  .instr-card{max-width:760px;margin:0 auto;padding:0;overflow:hidden;}
+  .instr-head{background:var(--tb-purple);color:#fff;padding:20px 26px;}
+  .instr-head h2{margin:0 0 4px;font-size:18px;}
+  .instr-head p{margin:0;font-size:12.5px;color:#E4DBFF;}
+  .instr-body{padding:24px 26px;}
+  .instr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+  .instr-stat{background:#fafafe;border:1px solid var(--line);border-radius:8px;padding:12px;text-align:center;}
+  .instr-stat b{display:block;font-size:18px;color:var(--tb-purple-dark);}
+  .instr-stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;}
+  .instr-list{font-size:13.5px;line-height:1.9;color:var(--ink);margin:0 0 20px;padding-left:20px;}
+  .instr-list li{margin-bottom:4px;}
+  .instr-legend-row{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 20px;font-size:12px;color:var(--muted);}
+  .instr-legend-row span{display:inline-flex;align-items:center;gap:6px;}
+  .agree-row{display:flex;align-items:center;gap:9px;padding:12px 14px;background:#fafafe;border:1px solid var(--line);border-radius:8px;margin-bottom:18px;}
+  .agree-row input{width:17px;height:17px;accent-color:var(--tb-purple);}
+  .agree-row label{font-size:13px;color:var(--ink);cursor:pointer;}
+
+  /* ================= QUIZ SCREEN (Testbook style) ================= */
+  .tb-topbar{
+    display:flex;align-items:center;justify-content:space-between;background:var(--white);
+    border-radius:var(--radius) var(--radius) 0 0;border:1px solid var(--line);border-bottom:none;
+    padding:12px 20px;flex-wrap:wrap;gap:10px;
+  }
+  .tb-topbar .test-name{font-size:14.5px;font-weight:800;color:var(--ink);}
+  .tb-topbar .test-name span{display:block;font-size:11.5px;font-weight:600;color:var(--muted);margin-top:1px;}
+  .timer-pill{
+    background:var(--tb-purple-light);color:var(--tb-purple-dark);font-weight:800;font-size:14px;
+    padding:8px 16px;border-radius:999px;display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums;
+  }
+  .timer-pill.low{background:var(--tb-red-bg);color:var(--tb-red);}
+  .timer-pill svg{width:15px;height:15px;}
+
+  .quiz-shell{border:1px solid var(--line);border-top:none;border-radius:0 0 var(--radius) var(--radius);background:var(--white);overflow:hidden;}
+  .quiz-layout{display:grid;grid-template-columns:1fr 300px;}
+  @media (max-width:900px){ .quiz-layout{grid-template-columns:1fr;} }
+
+  .qmain{border-right:1px solid var(--line);}
+  @media (max-width:900px){ .qmain{border-right:none;border-bottom:1px solid var(--line);} }
+
+  .qtop{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:8px;}
+  .qtop .qnum{font-weight:800;color:var(--ink);font-size:15px;}
+  .examtag{background:var(--tb-purple-light);color:var(--tb-purple-dark);font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px;}
+  .marks-tag{font-size:11px;color:var(--tb-green);font-weight:700;margin-left:8px;}
+
+  .qbody{padding:22px;min-height:280px;}
+  .qtext{font-size:16px;line-height:1.65;font-weight:600;color:var(--ink);margin-bottom:20px;}
+  .opt{
+    display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:9px;margin-bottom:10px;cursor:pointer;transition:.12s;background:#fdfdff;
+  }
+  .opt:hover{border-color:var(--tb-purple);background:var(--tb-purple-light);}
+  .opt.selected{border-color:var(--tb-purple);background:var(--tb-purple-light);}
+  .opt .optlabel{
+    width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);flex:none;
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--ink);background:#fff;
+  }
+  .opt.selected .optlabel{background:var(--tb-purple);color:#fff;border-color:var(--tb-purple);}
+  .opt .opttext{font-size:14px;line-height:1.5;padding-top:2px;}
+
+  .opt.rev-correct{border-color:var(--tb-green);background:var(--tb-green-bg);}
+  .opt.rev-correct .optlabel{background:var(--tb-green);border-color:var(--tb-green);color:#fff;}
+  .opt.rev-wrong{border-color:var(--tb-red);background:var(--tb-red-bg);}
+  .opt.rev-wrong .optlabel{background:var(--tb-red);border-color:var(--tb-red);color:#fff;}
+  .opt.rev-disabled{cursor:default;}
+  .explain-box{margin:0 0 11px;padding:11px 13px;border-radius:8px;font-size:12.5px;line-height:1.55;}
+  .explain-box.exp-correct{background:var(--tb-green-bg);color:#137047;border:1px solid #bfe9d4;}
+  .explain-box.exp-wrong{background:var(--tb-red-bg);color:#a33231;border:1px solid #f3caca;}
+
+  .verdict-banner{margin:0 22px 14px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;}
+  .verdict-correct{background:var(--tb-green-bg);color:var(--tb-green);}
+  .verdict-wrong{background:var(--tb-red-bg);color:var(--tb-red);}
+  .verdict-skipped{background:#FFF6E5;color:#96721A;}
+
+  /* Bottom action bar (Testbook style) */
+  .tb-bottombar{
+    display:flex;align-items:center;justify-content:space-between;padding:12px 22px;
+    border-top:1px solid var(--line);flex-wrap:wrap;gap:10px;background:#fafafe;
+  }
+  .tb-bottombar .grp{display:flex;gap:8px;flex-wrap:wrap;}
+
+  /* Sidebar palette */
+  .side-panel{padding:16px 16px 18px;}
+  .side-panel .user-mini{display:flex;align-items:center;gap:10px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line);}
+  .side-panel .user-mini .avatar{width:34px;height:34px;border-radius:50%;background:var(--tb-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex:none;}
+  .side-panel .user-mini .uname{font-size:13px;font-weight:700;color:var(--ink);}
+  .side-panel .user-mini .uset{font-size:11px;color:var(--muted);}
+
+  .legend2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;font-size:11px;color:var(--muted);}
+  .legend2 span{display:inline-flex;align-items:center;gap:6px;}
+  .swatch{width:16px;height:16px;border-radius:4px;flex:none;display:inline-block;position:relative;}
+  .swatch.circle{border-radius:50%;}
+  .sw-notvisited{background:#fff;border:1.5px solid var(--tb-grey-dark);}
+  .sw-notanswered{background:var(--tb-red);}
+  .sw-answered{background:var(--tb-green);}
+  .sw-marked{background:var(--tb-purple);border-radius:50%;}
+  .sw-markedans{background:var(--tb-purple);border-radius:50%;}
+  .sw-markedans::after{content:"";position:absolute;bottom:-1px;right:-1px;width:7px;height:7px;background:var(--tb-green);border-radius:50%;border:1px solid #fff;}
+
+  .palette{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px;}
+  .pnum{
+    aspect-ratio:1;border-radius:6px;border:1.5px solid var(--tb-grey-dark);background:#fff;color:var(--ink);
+    font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:.1s;position:relative;
+  }
+  .pnum.cur{outline:2.5px solid var(--ink);outline-offset:1px;}
+  .pnum.answered{background:var(--tb-green);border-color:var(--tb-green);color:#fff;}
+  .pnum.notanswered{background:var(--tb-red);border-color:var(--tb-red);color:#fff;}
+  .pnum.notvisited{background:#fff;color:var(--ink);}
+  .pnum.marked{background:var(--tb-purple);border-color:var(--tb-purple);color:#fff;border-radius:50%;}
+  .pnum.marked.hasans::after{content:"";position:absolute;bottom:-2px;right:-2px;width:9px;height:9px;background:var(--tb-green);border-radius:50%;border:1.5px solid #fff;}
+  .pnum.rev-correct-p{background:var(--tb-green);border-color:var(--tb-green);color:#fff;}
+  .pnum.rev-wrong-p{background:var(--tb-red);border-color:var(--tb-red);color:#fff;}
+  .pnum.rev-skip-p{background:#fff;color:var(--ink);}
+
+  .summary-box{background:#fafafe;border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--ink);margin-bottom:14px;}
+  .summary-box div{display:flex;justify-content:space-between;padding:3px 0;}
+  .summary-box b{font-weight:800;}
+
+  /* ---------- Submit modal ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(20,15,50,.55);display:flex;align-items:center;justify-content:center;
+    z-index:999;padding:16px;
+  }
+  .modal-box{background:#fff;border-radius:12px;max-width:420px;width:100%;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.3);}
+  .modal-box h3{margin:0 0 4px;font-size:16.5px;color:var(--ink);}
+  .modal-box p.sub{font-size:12.5px;color:var(--muted);margin:0 0 16px;}
+  .modal-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+  .modal-stats .mst{background:#fafafe;border:1px solid var(--line);border-radius:8px;padding:10px;text-align:center;}
+  .modal-stats .mst b{display:block;font-size:17px;}
+  .modal-stats .mst span{font-size:10.5px;color:var(--muted);text-transform:uppercase;}
+  .modal-actions{display:flex;gap:10px;}
+  .modal-actions .btn{flex:1;}
+
+  /* ---------- Result screen ---------- */
+  .result-hero{
+    background:linear-gradient(120deg,var(--tb-purple),var(--tb-purple-dark));color:#fff;border-radius:var(--radius);
+    padding:30px 26px;text-align:center;box-shadow:var(--shadow);margin-bottom:18px;
+  }
+  .result-hero .score-lbl{font-size:13px;color:#E4DBFF;font-weight:600;}
+  .result-hero .score-num{font-size:42px;font-weight:900;margin-top:2px;}
+  .result-stats{display:flex;justify-content:center;gap:24px;margin-top:16px;flex-wrap:wrap;}
+  .result-stats .stat{text-align:center;}
+  .result-stats .stat b{display:block;font-size:19px;}
+  .result-stats .stat span{font-size:11px;color:#DAD0FF;}
+
+  .filter-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .filter-btn{
+    border:1.5px solid var(--line);background:#fff;color:var(--ink);font-size:12px;font-weight:700;
+    padding:7px 14px;border-radius:999px;cursor:pointer;
+  }
+  .filter-btn.active{background:var(--tb-purple);border-color:var(--tb-purple);color:#fff;}
+
+  .topbar-actions{display:flex;gap:10px;justify-content:flex-end;margin-bottom:14px;flex-wrap:wrap;}
+  footer.note{text-align:center;color:var(--muted);font-size:11.5px;margin-top:24px;}
+
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-thumb{background:#d3d3e2;border-radius:8px;}
+
+  @media (max-width:600px){
+    .qbody{padding:16px;}
+    .reg-card{padding:28px 20px;}
+    .instr-grid{grid-template-columns:1fr 1fr;}
+    .tb-bottombar{flex-direction:column;align-items:stretch;}
+    .tb-bottombar .grp{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ================= SCREEN 1: REGISTRATION ================= -->
+  <div id="screen-register" class="center-stage">
+    <div class="card reg-card">
+      <img class="logo-lg" id="regLogo" alt="logo"/>
+      <h1>Welcome, Aspirant!</h1>
+      <p class="lede">Enter your name to begin the Biology Quiz 5 revision series.</p>
+      <div class="field-label">Your Name</div>
+      <input type="text" id="nameInput" placeholder="e.g. Rahul Kumar" maxlength="40" autocomplete="off"/>
+      <div class="err" id="nameErr"></div>
+      <button class="btn btn-primary" id="startBtn">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ================= SCREEN 2: SET SELECTION ================= -->
+  <div id="screen-sets" class="hidden">
+    <div class="brandbar">
+      <img class="logo" id="brandLogo" alt="Pakkirappa's CGL Hub"/>
+      <div class="brand-text">
+        <div class="title">50 Days Revision Series <span class="accent">— Biology Quiz 5</span></div>
+        <div class="subtitle">Nutrition (Animals &amp; Plants) &amp; Digestion</div>
+      </div>
+      <div class="userchip" id="userChip"><span class="dot"></span><span id="userChipName"></span></div>
+    </div>
+    <div class="section-title">Test Series</div>
+    <div class="section-sub">Pick any set to begin. Each set of 25 questions has a 36-second-per-question timer. Your progress and score are saved automatically — come back anytime to review.</div>
+    <div class="set-grid" id="setGrid"></div>
+  </div>
+
+  <!-- ================= SCREEN 2b: INSTRUCTIONS ================= -->
+  <div id="screen-instructions" class="hidden center-stage">
+    <div class="card instr-card">
+      <div class="instr-head">
+        <h2 id="instrTitle">Set 1: Atmosphere — Fundamentals</h2>
+        <p>Read the instructions carefully before you begin the test.</p>
+      </div>
+      <div class="instr-body">
+        <div class="instr-grid">
+          <div class="instr-stat"><b id="instrCount">25</b><span>Questions</span></div>
+          <div class="instr-stat"><b id="instrDuration">25:00</b><span>Duration</span></div>
+          <div class="instr-stat"><b>+1 / 0</b><span>Marking</span></div>
+        </div>
+        <ul class="instr-list">
+          <li>The test contains multiple-choice questions with four options each; only one option is correct.</li>
+          <li>A countdown timer is shown at the top right of the screen. The test auto-submits when time expires.</li>
+          <li>Click <b>Save & Next</b> to save your response and move to the next question.</li>
+          <li>Click <b>Mark for Review & Next</b> to flag a question for later revisiting.</li>
+          <li>Click <b>Clear Response</b> to deselect a chosen option for the current question.</li>
+          <li>Use the <b>Question Palette</b> on the right to jump directly to any question.</li>
+          <li>Click <b>Submit Test</b> anytime to end the test early and view your result &amp; analysis.</li>
+        </ul>
+        <div class="instr-legend-row">
+          <span><i class="swatch sw-notvisited"></i> Not Visited</span>
+          <span><i class="swatch sw-notanswered"></i> Not Answered</span>
+          <span><i class="swatch sw-answered"></i> Answered</span>
+          <span><i class="swatch circle sw-marked"></i> Marked for Review</span>
+          <span><i class="swatch circle sw-markedans"></i> Answered &amp; Marked</span>
+        </div>
+        <div class="agree-row">
+          <input type="checkbox" id="agreeCheck"/>
+          <label for="agreeCheck">I have read and understood the instructions. I agree to attempt the test within the given time.</label>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-grey" id="instrBackBtn">← Back to Test Series</button>
+          <button class="btn btn-primary" id="instrStartBtn" style="margin-top:0;" disabled>Start Test →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SCREEN 3: QUIZ ATTEMPT (Testbook style) ================= -->
+  <div id="screen-quiz" class="hidden">
+    <div class="tb-topbar">
+      <div class="test-name" id="quizTestName">Set 1: Nutrition in Animals — I<span>Biology Quiz 5</span></div>
+      <div class="timer-pill" id="timerPill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span id="timerText">25:00</span>
+      </div>
+      <button class="btn btn-red btn-sm" id="submitTopBtn">Submit Test</button>
+    </div>
+    <div class="quiz-shell">
+      <div class="quiz-layout">
+        <div class="qmain">
+          <div class="qtop">
+            <div class="qnum" id="qNumLabel">Question 1 of 25 <span class="marks-tag">+1 / 0</span></div>
+            <div class="examtag" id="qExamTag">SSC CGL</div>
+          </div>
+          <div class="qbody">
+            <div class="qtext" id="qText"></div>
+            <div id="optList"></div>
+          </div>
+          <div class="tb-bottombar">
+            <div class="grp">
+              <button class="btn btn-grey btn-sm" id="prevBtn">← Previous</button>
+              <button class="btn btn-grey btn-sm" id="clearBtn">Clear Response</button>
+            </div>
+            <div class="grp">
+              <button class="btn btn-purple-outline btn-sm" id="markBtn">Mark for Review &amp; Next</button>
+              <button class="btn btn-primary" style="margin-top:0;width:auto;" id="saveNextBtn">Save &amp; Next →</button>
+            </div>
+          </div>
+        </div>
+        <div class="side-panel">
+          <div class="user-mini">
+            <div class="avatar" id="sideAvatar">R</div>
+            <div>
+              <div class="uname" id="sideUname">Candidate</div>
+              <div class="uset" id="sideSetName">Set 1</div>
+            </div>
+          </div>
+          <div class="legend2">
+            <span><i class="swatch sw-answered"></i> Answered</span>
+            <span><i class="swatch sw-notanswered"></i> Not Answered</span>
+            <span><i class="swatch sw-notvisited"></i> Not Visited</span>
+            <span><i class="swatch circle sw-marked"></i> Marked</span>
+          </div>
+          <div class="palette" id="paletteGrid"></div>
+          <div class="summary-box" id="sideSummary"></div>
+          <button class="btn btn-red" id="finalSubmitBtn" style="width:100%;">Submit Test</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SUBMIT CONFIRM MODAL ================= -->
+  <div id="submitModal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h3>Submit Test?</h3>
+      <p class="sub">Please review your attempt summary before submitting. This action cannot be undone.</p>
+      <div class="modal-stats">
+        <div class="mst"><b style="color:var(--tb-green)" id="modalAnswered">0</b><span>Answered</span></div>
+        <div class="mst"><b style="color:var(--tb-red)" id="modalNotAnswered">0</b><span>Not Answered</span></div>
+        <div class="mst"><b style="color:var(--tb-purple)" id="modalMarked">0</b><span>Marked for Review</span></div>
+        <div class="mst"><b style="color:var(--tb-grey-dark)" id="modalNotVisited">0</b><span>Not Visited</span></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-grey" id="modalCancelBtn">Cancel</button>
+        <button class="btn btn-red" id="modalConfirmBtn">Yes, Submit Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SCREEN 4: RESULT ================= -->
+  <div id="screen-result" class="hidden">
+    <div class="topbar-actions">
+      <button class="btn btn-purple-outline btn-sm" id="resultBackBtn">← Back to Test Series</button>
+    </div>
+    <div class="result-hero">
+      <div class="score-lbl">YOUR SCORE — <span id="resultSetName"></span></div>
+      <div class="score-num" id="resultScoreNum">0 / 25</div>
+      <div class="result-stats">
+        <div class="stat"><b id="statCorrect">0</b><span>Correct</span></div>
+        <div class="stat"><b id="statWrong">0</b><span>Wrong</span></div>
+        <div class="stat"><b id="statSkipped">0</b><span>Skipped</span></div>
+        <div class="stat"><b id="statAccuracy">0%</b><span>Accuracy</span></div>
+      </div>
+    </div>
+    <div class="section-title">Detailed Analysis</div>
+    <div class="section-sub">Tap any question number, or use the filters, to review your answer with a full explanation for every option.</div>
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="correct">Correct</button>
+      <button class="filter-btn" data-filter="wrong">Wrong</button>
+      <button class="filter-btn" data-filter="skipped">Skipped</button>
+    </div>
+    <div class="quiz-shell" style="border-radius:10px;border:1px solid var(--line);">
+      <div class="quiz-layout">
+        <div class="qmain">
+          <div class="qtop">
+            <div class="qnum" id="rNumLabel">Question 1 of 25</div>
+            <div class="examtag" id="rExamTag">SSC CGL</div>
+          </div>
+          <div class="verdict-banner" id="rVerdictBanner"></div>
+          <div class="qbody">
+            <div class="qtext" id="rQText"></div>
+            <div id="rOptList"></div>
+          </div>
+          <div class="tb-bottombar">
+            <div class="grp"><button class="btn btn-grey btn-sm" id="rPrevBtn">← Previous</button></div>
+            <div class="grp"><button class="btn btn-purple-outline btn-sm" id="rNextBtn">Next →</button></div>
+          </div>
+        </div>
+        <div class="side-panel">
+          <h4 style="margin:2px 0 10px;font-size:12.5px;color:var(--ink);text-transform:uppercase;letter-spacing:.4px;">Question Palette</h4>
+          <div class="legend2">
+            <span><i class="swatch sw-answered"></i> Correct</span>
+            <span><i class="swatch sw-notanswered"></i> Wrong</span>
+            <span><i class="swatch sw-notvisited"></i> Skipped</span>
+          </div>
+          <div class="palette" id="rPaletteGrid"></div>
+          <div class="summary-box" id="rSideSummary"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="note">Pakkirappa's CGL Hub — Education For All · SSC CGL / CHSL / MTS Biology Revision</footer>
+</div>
+
+<script>
+// ============================================================
+// QUESTION BANK — Biology Quiz 5: Nutrition (Animals & Plants) & Digestion
+// Sourced from Pinnacle SSC Biology compilation (Q9-Q63) & Borderland SSC Warbook Ch.VI (Q1-Q30)
+// ============================================================
+const QUESTIONS = [
+
+// ---------------- SET 1 ----------------
+{id:1, set:1, tag:"SSC MTS 16/10/2024 (2nd Shift)", q:"Which food is a good source of complete protein?", options:["Eggs","Spinach","Lentils","Rice"], correct:0, exp:["Correct — Eggs are made of about 20 amino acids and are naturally rich in vitamin B2, B12, vitamin D, selenium and iodine, making them a complete protein source.","Incorrect — Spinach is a leafy vegetable and, while nutritious, is not classed as a complete protein source.","Incorrect — Lentils are a good plant protein but lack one or more essential amino acids, so they are not 'complete' on their own.","Incorrect — Rice is primarily a carbohydrate source, not a complete protein."]},
+{id:2, set:1, tag:"SSC MTS 23/10/2024 (2nd Shift)", q:"If the Glycemic Index (GI) of a specific food is from 70 to 100, then the type of that food is:", options:["Low - GI food","High - GI food","Medium - GI food","Extremely low - GI food"], correct:1, exp:["Incorrect — Low-GI foods have a GI of 55 or lower.","Correct — A GI of 70–100 causes a rapid rise in blood sugar and is classified as High-GI, typical of processed/refined carbohydrates like white bread or sugary snacks.","Incorrect — Medium-GI foods fall between 56 and 69.","Incorrect — There is no 'extremely low' GI category in standard classification."]},
+{id:3, set:1, tag:"SSC CGL 19/09/2024 (3rd Shift)", q:"Which is the most important protein component in milk, both quantitatively and nutritionally, that accounts for about 80% of the total protein in bovine milk?", options:["Actin","Albumin","Pepsin","Casein"], correct:3, exp:["Incorrect — Actin is a structural protein in muscle cells, not a milk protein.","Incorrect — Albumin helps in osmotic balance in blood plasma, not the main milk protein.","Incorrect — Pepsin is a stomach digestive enzyme, not a milk protein.","Correct — Casein exists in milk as complex micelles and makes up about 80% of total milk protein."]},
+{id:4, set:1, tag:"SSC CGL 23/09/2024 (2nd Shift)", q:"Which of the following is another name for vitamin C?", options:["Pyridoxine","Pyridoxal","Pyridoxamine","Ascorbic acid"], correct:3, exp:["Incorrect — Pyridoxine is a form of vitamin B6.","Incorrect — Pyridoxal is also a form of vitamin B6.","Incorrect — Pyridoxamine is another form of vitamin B6.","Correct — Ascorbic acid is the scientific name for vitamin C, a water-soluble vitamin that aids collagen production and wound healing; its deficiency causes scurvy."]},
+{id:5, set:1, tag:"SSC CGL 25/09/2024 (1st Shift)", q:"Which essential amino acid enhances calcium absorption and also plays an important role in the formation of collagen?", options:["Arginine","Tyrosine","Lysine","Histidine"], correct:2, exp:["Incorrect — L-arginine helps build proteins but is not specifically linked to calcium absorption.","Incorrect — Tyrosine is a non-essential amino acid found freely in organisms.","Correct — Lysine is an essential amino acid obtained from food (meat, fish, dairy, eggs); collagen contains hydroxylysine derived from lysine, and it also enhances calcium absorption.","Incorrect — Histidine is essential for protein biosynthesis but is not specifically tied to calcium absorption."]},
+{id:6, set:1, tag:"SSC CHSL 10/07/2024 (3rd shift)", q:"Which non-essential amino acid is synthesised by the hydroxylation of phenylalanine in a reaction catalysed by phenylalanine hydroxylase?", options:["Cysteine","Glycine","Tyrosine","Glutamine"], correct:2, exp:["Incorrect — Cysteine is not formed from phenylalanine hydroxylation.","Incorrect — Glycine is a simple non-essential amino acid unrelated to this pathway.","Correct — Tyrosine is a non-essential amino acid produced by hydroxylation of phenylalanine via phenylalanine hydroxylase.","Incorrect — Glutamine is not produced through this reaction."]},
+{id:7, set:1, tag:"SSC CPO 29/06/2024 (2nd shift)", q:"Which vitamin is involved in red blood cell formation, neurological function and DNA synthesis?", options:["Vitamin B7","Vitamin K","Vitamin E","Vitamin B12"], correct:3, exp:["Incorrect — Vitamin B7 (Biotin) is not primarily linked to RBC formation and DNA synthesis in this way.","Incorrect — Vitamin K is mainly involved in blood clotting.","Incorrect — Vitamin E supports RBC formation but is not chiefly linked to DNA synthesis and neurological function together.","Correct — Vitamin B12 is essential for red blood cell formation, neurological function, and DNA synthesis."]},
+{id:8, set:1, tag:"Matriculation Level 26/06/2024 (Shift-1)", q:"Which of the following groups represents essential amino acids?", options:["Histidine, isoleucine, leucine, lysine","Alanine, arginine, asparagine, aspartic acid","Alanine, isoleucine, leucine, lysine","Glycine, proline, serine, and tyrosine"], correct:0, exp:["Correct — Histidine, isoleucine, leucine and lysine are all essential amino acids the body cannot synthesise, so they must come from food.","Incorrect — Alanine, arginine, asparagine and aspartic acid are non-essential amino acids.","Incorrect — Alanine is non-essential, so this mixed group is not entirely essential.","Incorrect — Glycine, proline, serine and tyrosine are all non-essential amino acids."]},
+{id:9, set:1, tag:"SSC CHSL Tier II 02/11/2023", q:"Select the INCORRECT statement with regards to vitamins.", options:["Plants can synthesise almost all vitamins.","Vitamins are organic compounds.","Some bacteria in the gut do not produce vitamins.","Most of the vitamins cannot get synthesised in sufficient amounts in our body."], correct:2, exp:["Incorrect (this is a true statement) — Plants can indeed synthesise almost all vitamins.","Incorrect (this is a true statement) — Vitamins are indeed organic compounds.","Correct (this is the INCORRECT statement) — Gut bacteria actually help supply essential nutrients, such as synthesising vitamin K, so it is false that they 'do not produce vitamins'.","Incorrect (this is a true statement) — Most vitamins indeed cannot be synthesised in sufficient amounts by the human body."]},
+{id:10, set:1, tag:"SSC Stenographer 12/10/2023 (Evening)", q:"Which essential micronutrient plays a clear role in the synthesis, storage and secretion of insulin in the hexameric form as well as in the conformational integrity of insulin?", options:["Zinc","Fluoride","Selenium","Phosphorus"], correct:0, exp:["Correct — Zinc plays a clear role in the synthesis, storage, secretion, and structural integrity of insulin in its hexameric form.","Incorrect — Fluoride mainly inhibits dental caries and stimulates bone formation, not insulin function.","Incorrect — Selenium is important for reproduction, thyroid metabolism and antioxidant defence, not insulin's hexameric structure.","Incorrect — Phosphorus is a component of bones, teeth, DNA and RNA, not primarily insulin structure."]},
+{id:11, set:1, tag:"SSC CPO 03/10/2023 (Afternoon)", q:"Which of the following was the first B vitamin discovered in 1897 that is essential in amino acid and carbohydrate metabolism and is active in energy production reactions?", options:["Thiamine","Folate","Riboflavin","Biotin"], correct:0, exp:["Correct — Thiamine (Vitamin B1) was the first B vitamin discovered, in 1897, and is essential for amino acid/carbohydrate metabolism and energy production.","Incorrect — Folate (B9) was discovered later and has a different primary function.","Incorrect — Riboflavin (B2) is important for red cell production, not the first B vitamin discovered.","Incorrect — Biotin (B7) was not the first B vitamin discovered in 1897."]},
+{id:12, set:1, tag:"SSC CPO 04/10/2023 (Afternoon)", q:"What is the most important health benefit of Vitamin D?", options:["Strengthening of bones and muscles","Reducing the blood pressure","Elevation of heartbeat","Rapid growth after teenage years"], correct:0, exp:["Correct — Vitamin D (Calciferol) mainly strengthens bones and muscles; its deficiency causes rickets with weak, painful bones.","Incorrect — Reducing blood pressure is not the main recognised benefit of Vitamin D.","Incorrect — Elevating heartbeat is not a function of Vitamin D.","Incorrect — Vitamin D is not specifically about rapid growth after teenage years."]},
+{id:13, set:1, tag:"SSC CPO 05/10/2023 (Afternoon)", q:"The food component present in sugar is:", options:["fats","vitamins","carbohydrates","protein"], correct:2, exp:["Incorrect — Sugar contains no significant fat.","Incorrect — Sugar does not contain vitamins.","Correct — Sugar molecules are carbohydrates; the body breaks them down into glucose, the main energy source.","Incorrect — Sugar contains no protein."]},
+{id:14, set:1, tag:"SSC MTS 05/09/2023 (2nd Shift)", q:"Milk, seafood, nuts and whole grains contain high amounts of which mineral that supports bone health and our body's repair process?", options:["Fluoride","Potassium","phosphorus","Zinc"], correct:2, exp:["Incorrect — Fluoride mainly helps prevent tooth decay, not the primary mineral described here.","Incorrect — Potassium is present in milk but is not the mineral chiefly described for bone health/repair here.","Correct — Phosphorus, found in milk, seafood, nuts and whole grains, supports bone health and the body's repair processes.","Incorrect — Zinc is found in some of these foods but is not the mineral being described here."]},
+{id:15, set:1, tag:"SSC CHSL 03/08/2023 (2nd shift)", q:"What is the monomer unit of glycogen?", options:["Fructose","Glucose","Galactose","Mannose"], correct:1, exp:["Incorrect — Fructose is a monosaccharide found in fruits, not the glycogen monomer.","Correct — Glucose (C6H12O6) is the monomer unit of glycogen, the branched 'animal starch' stored in liver, muscles and brain.","Incorrect — Galactose is not the monomer unit of glycogen.","Incorrect — Mannose is not the monomer unit of glycogen."]},
+{id:16, set:1, tag:"SSC CHSL 17/08/2023 (1st shift)", q:"Which essential amino acid is necessary for the production of our brain's chemical messengers including melatonin, dopamine, noradrenaline and thyroxine?", options:["Leucine","Phenylalanine","Tryptophan","Valine"], correct:1, exp:["Incorrect — Leucine mainly supplies energy to skeletal muscle during exercise.","Correct — Phenylalanine is an essential amino acid used to make proteins and vital molecules such as neurotransmitters and hormones, including dopamine, noradrenaline and thyroxine.","Incorrect — Tryptophan is needed for normal growth and maintenance of proteins/neurotransmitters but is not the amino acid described for these specific messengers.","Incorrect — Valine is an essential amino acid but not specifically linked to these brain messengers."]},
+{id:17, set:1, tag:"SSC CGL 17/07/2023 (1st shift)", q:"Which of the following is the correct match of column-A with column-B? i. Protein rich food ii. Fat rich food iii. Carbohydrate rich food iv. Vitamin C rich food — a. Wheat b. Lemon c. Egg white d. Butter and cheese", options:["i-c, ii-a, iii-b, iv-d","i-c, ii-d, iii-b, iv-a","i-c, ii-d, iii-a, iv-b","i-d, ii-c, iii-b, iv-a"], correct:2, exp:["Incorrect — This ordering wrongly pairs carbohydrate-rich food with lemon and vitamin C with butter/cheese.","Incorrect — This ordering wrongly pairs carbohydrate-rich food with butter/cheese.","Correct — i-c (egg white, protein), ii-d (butter and cheese, fat), iii-a (wheat, carbohydrate), iv-b (lemon, vitamin C).","Incorrect — This ordering incorrectly starts protein with butter and cheese."]},
+{id:18, set:1, tag:"SSC MTS 02/05/2023 (Afternoon)", q:"Which of the following vitamins helps to keep our skin and eyes healthy?", options:["Vitamin A","Vitamin D","Vitamin C","Vitamin B"], correct:0, exp:["Correct — Vitamin A keeps skin and eyes healthy; its deficiency causes night blindness and irregular tooth growth.","Incorrect — Vitamin D mainly helps bone and teeth health via calcium use.","Incorrect — Vitamin C mainly aids collagen formation and iron absorption.","Incorrect — Vitamin B is a group mainly linked to metabolism and nerve function, not primarily skin/eye health."]},
+{id:19, set:1, tag:"SSC MTS 09/05/2023 (Evening)", q:"Which among the following vitamins influences iron absorption?", options:["Vitamin B","Vitamin D","Vitamin C","Vitamin K"], correct:2, exp:["Incorrect — Vitamin B is not primarily linked to iron absorption.","Incorrect — Vitamin D mainly helps with calcium usage for bones.","Correct — Vitamin C (ascorbic acid), a water-soluble antioxidant, enhances iron absorption and aids collagen formation.","Incorrect — Vitamin K is mainly involved in blood clotting."]},
+{id:20, set:1, tag:"SSC MTS 19/06/2023 (Morning)", q:"Which of the following vitamins helps our body to use calcium for bones and teeth?", options:["Vitamin C","Vitamin D","Vitamin A","Vitamin E"], correct:1, exp:["Incorrect — Vitamin C mainly aids collagen formation and iron absorption.","Correct — Vitamin D helps the body use calcium for bones and teeth, and helps prevent osteoporosis.","Incorrect — Vitamin A is mainly for skin and eye health.","Incorrect — Vitamin E mainly protects cell membranes and helps RBC formation."]},
+{id:21, set:1, tag:"SSC CHSL 09/03/2023 (4th Shift)", q:"Which of the following pairs of 'mineral - source' is correct? I. Vitamin A - Papaya II. Iron - Spinach", options:["Both I and II","Neither I nor II","Only I","Only II"], correct:0, exp:["Correct — Both pairs are correct: Vitamin A can be sourced from fruits like papaya, and Iron is well known to come from spinach.","Incorrect — Both statements are actually correct, not neither.","Incorrect — Statement II (Iron–Spinach) is also correct, so it isn't 'Only I'.","Incorrect — Statement I (Vitamin A–Papaya) is also correct, so it isn't 'Only II'."]},
+{id:22, set:1, tag:"SSC CHSL 15/03/2023 (1st Shift)", q:"Which among the following vitamins is known as Niacin?", options:["Vitamin B2","Vitamin B1","Vitamin B4","Vitamin B3"], correct:3, exp:["Incorrect — Vitamin B2 is Riboflavin.","Incorrect — Vitamin B1 is Thiamine.","Incorrect — There is no standard 'Vitamin B4' in the accepted vitamin list.","Correct — Niacin is the generic name for Vitamin B3 (nicotinic acid/nicotinamide)."]},
+{id:23, set:1, tag:"SSC CGL Tier II (07/03/2023)", q:"Match the columns. Nutrients: a. Protein b. Carbohydrate c. Fat d. Minerals — Examples: i. Calcium, Phosphorous ii. Cholesterol iii. Glucose iv. Myosin", options:["a-i, b-iii, c-ii, d-iv","a-iii, b-iv, c-ii, d-i","a-i, b-ii, c-iii, d-iv","a-iv, b-iii, c-ii, d-i"], correct:3, exp:["Incorrect — This wrongly matches protein with calcium/phosphorous.","Incorrect — This wrongly matches protein with glucose.","Incorrect — This wrongly matches protein with calcium/phosphorous and carbohydrate with cholesterol.","Correct — a-iv (protein–myosin), b-iii (carbohydrate–glucose), c-ii (fat–cholesterol), d-i (minerals–calcium, phosphorous)."]},
+{id:24, set:1, tag:"SSC CPO 11/11/2022 (Morning)", q:"Nuts, vegetable oil and fish are rich sources of__________.", options:["Omega - 3","carbohydrates","minerals","vitamins"], correct:0, exp:["Correct — Nuts, vegetable oil and fish are well-known rich sources of Omega-3 fatty acids.","Incorrect — These foods are not primarily known as carbohydrate sources.","Incorrect — While they contain some minerals, that is not their defining characteristic here.","Incorrect — Vitamins are not the main nutrient these foods are recognised for."]},
+{id:25, set:1, tag:"SSC CPO 11/11/2022 (Afternoon)", q:"Which of the following pairs of minerals – need is correct? I. Iron – formation of hemoglobin II. Sodium – proper functioning of thyroid", options:["Neither I nor II","Only II","Both I and II","Only I"], correct:3, exp:["Incorrect — Statement I is correct, so it isn't 'Neither'.","Incorrect — Statement II is wrong (thyroxine formation needs Iodine, not Sodium), so it isn't 'Only II'.","Incorrect — Statement II is incorrect, so 'Both' cannot be right.","Correct — Only Statement I is correct: Iron is essential for the formation of hemoglobin. Iodine, not Sodium, is needed to make thyroxine."]},
+
+// ---------------- SET 2 ----------------
+{id:26, set:2, tag:"Graduate Level 01/08/2022 (Shift-4)", q:"Which amino acid is essential for healthy skin and teeth, as it is a component of tooth enamel, collagen and elastin?", options:["Leucine","Arginine","Phenylalanine","Threonine"], correct:3, exp:["Incorrect — Leucine is an essential amino acid for protein synthesis, but not specifically linked to tooth enamel/elastin.","Incorrect — Arginine is used for treatment of heart and blood vessel conditions, not primarily tooth enamel/elastin.","Incorrect — Phenylalanine is linked to a disorder causing white skin patches (vitiligo), not this role.","Correct — Threonine is used in the biosynthesis of proteins and is a component of tooth enamel, collagen and elastin."]},
+{id:27, set:2, tag:"Higher Secondary 03/08/2022 (Shift-4)", q:"Which of the following is a micronutrient, and plays a role in cell division, cell growth, wound healing and the breakdown of carbohydrates?", options:["Fe","Zn","Cu","Ca"], correct:1, exp:["Incorrect — Fe (Iron) is mainly linked to hemoglobin formation, not this specific role.","Correct — Zn (Zinc) is a micronutrient involved in cell division, cell growth, wound healing and carbohydrate breakdown.","Incorrect — Cu (Copper) is not the mineral described for this specific role.","Incorrect — Ca (Calcium) is mainly linked to bones and teeth, not this role."]},
+{id:28, set:2, tag:"SSC CHSL 10/06/2022 (Evening)", q:"Which is a major essential lipophilic (fat-soluble) vitamin required for the protection of cell membranes and the formation of red blood cells (RBCs)?", options:["Vitamin A","Vitamin C","Vitamin D","Vitamin E"], correct:3, exp:["Incorrect — Vitamin A is mainly linked to vision and skin health.","Incorrect — Vitamin C is water-soluble, not lipophilic.","Incorrect — Vitamin D mainly helps calcium usage for bones.","Correct — Vitamin E (Tocopherol) is a fat-soluble vitamin important for protecting cell membranes and RBC formation."]},
+{id:29, set:2, tag:"SSC MTS 18/10/2021 (Afternoon)", q:"When the breakdown of food (glucose) occurs without the use of oxygen, it is called:", options:["aerobic respiration","cellular respiration","capillary respiration","anaerobic respiration"], correct:3, exp:["Incorrect — Aerobic respiration uses oxygen to break down fuel into chemical energy.","Incorrect — 'Cellular respiration' is a general umbrella term, not specific to the absence of oxygen.","Incorrect — 'Capillary respiration' is not a recognised biological term.","Correct — Anaerobic respiration is the breakdown of glucose without the use of oxygen."]},
+{id:30, set:2, tag:"SSC CHSL 08/07/2024 (1st shift)", q:"Which of the following causes enlargement and extension growth of cells?", options:["Pressure potential","Osmotic pressure","Imbibition","Turgor pressure"], correct:3, exp:["Incorrect — Pressure potential is controlled by solute potential and affects stomatal opening/closing, not directly cell enlargement.","Incorrect — Osmotic pressure is the minimum pressure to prevent inward flow of solvent, not the direct cause of cell enlargement.","Incorrect — Imbibition is diffusion-driven absorption of liquid causing swelling in solids/colloids, distinct from turgor-driven growth.","Correct — Turgor pressure causes enlargement and extension growth of cells by pushing the cell membrane against the cell wall."]},
+{id:31, set:2, tag:"SSC CHSL 10/07/2024 (1st shift)", q:"Identify a carbohydrate but does not fit into the definition.", options:["Maltose","Sucrose","Fructose","Rhamnose"], correct:3, exp:["Incorrect — Maltose is a standard disaccharide fitting the carbohydrate general formula.","Incorrect — Sucrose is a standard disaccharide fitting the carbohydrate general formula.","Incorrect — Fructose is a standard monosaccharide fitting the carbohydrate general formula.","Correct — Rhamnose (C6H12O5) does not fit the standard carbohydrate general formula Cx(H2O)y, unlike common carbohydrates."]},
+{id:32, set:2, tag:"SSC CPO 27/06/2024 (1st shift)", q:"Which protein is found in grains?", options:["Gluten","Gum protein","Arginine","Delta protein"], correct:0, exp:["Correct — Gluten is a protein naturally found in grains like wheat, barley and rye.","Incorrect — 'Gum protein' is not a recognised grain protein.","Incorrect — Arginine is an amino acid, not a grain-specific protein.","Incorrect — 'Delta protein' is not a recognised grain protein."]},
+{id:33, set:2, tag:"SSC CPO 27/06/2024 (2nd shift)", q:"What is pro-vitamin A or the anti-cancer compound present in carrots called?", options:["Beta - carotene","Alpha - resins","Delta - terpenes","Alpha - terpenoid"], correct:0, exp:["Correct — Beta-carotene is a yellow-orange pigment in carrots that converts to Vitamin A and has antioxidant, anti-cancer properties.","Incorrect — 'Alpha-resins' is not the recognised pro-vitamin A compound.","Incorrect — 'Delta-terpenes' is not the recognised pro-vitamin A compound.","Incorrect — 'Alpha-terpenoid' is not the recognised pro-vitamin A compound."]},
+{id:34, set:2, tag:"SSC CPO 29/06/2024 (2nd shift)", q:"Garlic is a good source of :", options:["zinc and cobalt","magnesium and aluminium","iron and copper","manganese and selenium"], correct:3, exp:["Incorrect — Cobalt is not a highlighted micronutrient of garlic in this context.","Incorrect — Aluminium is not a nutrient garlic is valued for.","Incorrect — While garlic has some iron and copper, they are not the pair highlighted here.","Correct — Manganese and selenium are essential micronutrients important to cell metabolism, and garlic is a valuable source of both along with potassium, calcium, magnesium and phosphorus."]},
+{id:35, set:2, tag:"Matriculation Level 21/06/2024 (Shift-1)", q:"On which of the following components of chloroplast is chlorophyll arranged?", options:["Thylakoids","Matrix","Stroma","Cell Membrane"], correct:0, exp:["Correct — Chlorophyll is arranged on the thylakoid membrane inside chloroplasts, the site of photosynthesis.","Incorrect — 'Matrix' refers to mitochondria, not chloroplasts.","Incorrect — Stroma is the space surrounding thylakoids, not where chlorophyll is arranged.","Incorrect — The cell membrane is not where chlorophyll is arranged."]},
+{id:36, set:2, tag:"Graduate Level 20/06/2024 (Shift-3)", q:"Compounds like gingerol, paradol, shogaols and zingerone are:", options:["antifungal compounds found in ginger","antimicrobial compounds found in turmeric","antimicrobial compounds found in ginger","antimicrobial compounds found in citrus fruits"], correct:2, exp:["Incorrect — These are described as antimicrobial, not specifically antifungal, compounds.","Incorrect — These compounds are found in ginger, not turmeric.","Correct — Gingerol, paradol, shogaols and zingerone are antimicrobial compounds found in ginger (Zingiber officinale), with gingerols also offering anti-oxidative potential.","Incorrect — These compounds are found in ginger, not citrus fruits."]},
+{id:37, set:2, tag:"SSC CHSL 10/08/2023 (1st shift)", q:"Which natural bioactive water-soluble phenolic compound is present in Fruits, vegetables and grains with red, purple, blue or black hues?", options:["Coumarins","Anthocyanins","Quercetin","Naringenin"], correct:1, exp:["Incorrect — Coumarins are colourless crystalline compounds with a sweet odour, not linked to red/purple/blue/black hues.","Correct — Anthocyanins are water-soluble phenolic pigments (a type of flavonoid) responsible for red, purple, blue or black hues in foods like pomegranates, black rice and red cabbage.","Incorrect — Quercetin has a bitter flavour and is used in supplements, not the pigment for these hues.","Incorrect — Naringenin is an anti-obesity, anti-diabetic flavonoid, not the pigment for these hues."]},
+{id:38, set:2, tag:"SSC CHSL 11/08/2023 (4th shift)", q:"Which of the following nutrients is available mainly in apples?", options:["Co","Na","K","S"], correct:2, exp:["Incorrect — Cobalt is not the nutrient apples are known for.","Incorrect — Sodium is not the nutrient apples are known for.","Correct — K (Potassium) is found in apples along with malic acid; potassium-rich foods also include bananas, oranges and cantaloupe.","Incorrect — Sulphur is not the nutrient apples are known for."]},
+{id:39, set:2, tag:"SSC CHSL 17/08/2023 (1st shift)", q:"Which of the following grains contain oryzenin?", options:["Barley","Wheat","Soyabean","Rice"], correct:3, exp:["Incorrect — Barley does not contain oryzenin.","Incorrect — Wheat contains protein and B vitamins but not oryzenin specifically.","Incorrect — Soyabean is high in protein but does not contain oryzenin.","Correct — Rice contains oryzenin, a glutelin that is an important constituent of rice protein, comprising up to 80% of its total protein."]},
+{id:40, set:2, tag:"SSC CGL 27/07/2023 (3rd shift)", q:"What happens to the guard cells when water flows into them?", options:["The guard cells close","Stomatal pores open","Stomatal pores shrink","Stomatal pores close"], correct:1, exp:["Incorrect — Guard cells do not simply 'close' when water flows in; the pore they surround opens.","Correct — When water flows into guard cells, they swell and the stomatal pores open, allowing gas exchange.","Incorrect — Stomatal pores do not shrink when water flows into guard cells.","Incorrect — Stomatal pores do not close when water flows into guard cells; that happens when water leaves them."]},
+{id:41, set:2, tag:"Graduate Level 28/06/2023 (Shift-3)", q:"Plants that are adapted to live under plenty of sunlight are called :", options:["xerophytes","heliophytes","neophytes","protophytes"], correct:1, exp:["Incorrect — Xerophytes are plants adapted to survive in arid regions like deserts, not specifically defined by sunlight.","Correct — Heliophytes are plants adapted to live under plenty of sunlight, e.g. sunflowers, thyme and white clover.","Incorrect — Neophytes are plants not native to a region, introduced recently — unrelated to sunlight adaptation.","Incorrect — 'Protophytes' is not the term for sunlight-adapted plants."]},
+{id:42, set:2, tag:"SSC MTS 02/05/2023 (Evening)", q:"The leaves have a green pigment called ____________, which helps leaves to capture the energy from the sunlight.", options:["Cladophyll","Chlorophyll","Xanthophyll","Cytoplasm"], correct:1, exp:["Incorrect — Cladophyll refers to a shoot system where leaves do not develop, not the green pigment.","Correct — Chlorophyll is the green pigment in leaves (containing magnesium) that captures energy from sunlight.","Incorrect — Xanthophylls are yellow pigments, part of the carotenoid group, not the green light-capturing pigment.","Incorrect — Cytoplasm is the fluid inside the cell, not a pigment."]},
+{id:43, set:2, tag:"SSC MTS 03/05/2023 (Afternoon)", q:"Which plant tissue is responsible for the transportation of water and minerals from the soil to the stems and leaves?", options:["Xylem","Parenchyma","Collenchyma","Phloem"], correct:0, exp:["Correct — Xylem is the vascular tissue responsible for transporting water and minerals from soil to stems and leaves.","Incorrect — Parenchyma is a general packing/storage tissue, not the water-transport tissue.","Incorrect — Collenchyma provides mechanical support, not water transport.","Incorrect — Phloem transports food (not water/minerals) bidirectionally in plants."]},
+{id:44, set:2, tag:"SSC MTS 11/05/2023 (Evening)", q:"The mode of nutrition in which organisms make food themselves from simple substances is called ________.", options:["heterotrophic nutrition","autotrophic nutrition","saprotrophic nutrition","phototrophic nutrition"], correct:1, exp:["Incorrect — Heterotrophic nutrition depends on other organisms for food, e.g. humans and animals.","Correct — Autotrophic nutrition is the mode where organisms (plants, algae, some bacteria) make their own food from simple substances.","Incorrect — Saprotrophic nutrition involves taking nutrients from dead and decaying matter, not making food from simple substances directly.","Incorrect — Phototrophic nutrition specifically uses light to obtain nutrition; the broader term for self-made food is autotrophic."]},
+{id:45, set:2, tag:"SSC MTS 15/05/2023 (Afternoon)", q:"Plants require nutrients for their growth which can be supplied through _______ .", options:["Soil and air only","Soil, water and air","Soil and water only","Soil only"], correct:1, exp:["Incorrect — Air alone with soil misses water, one of the three essential elements' sources.","Correct — Soil, water and air together supply the elements (carbon, oxygen, hydrogen) and nutrients essential for plant growth.","Incorrect — Soil and water alone misses air as a nutrient source.","Incorrect — Soil alone is insufficient; water and air are also essential sources."]},
+{id:46, set:2, tag:"SSC MTS 17/05/2023 (Morning)", q:"Water comes out of the leaves in the form of vapour by a process called ______.", options:["creepers","transportation","venation","transpiration"], correct:3, exp:["Incorrect — 'Creepers' refers to a type of plant growth habit, not a water-loss process.","Incorrect — 'Transportation' is a general term, not the specific process of water vapour loss from leaves.","Incorrect — Venation refers to the arrangement of veins in a leaf, not water loss.","Correct — Transpiration is the process by which water comes out of leaves in vapour form, mainly through stomata."]},
+{id:47, set:2, tag:"SSC MTS 17/05/2023 (Afternoon)", q:"The broad, green part of the leaf is called .", options:["lamina","petiole","veins","midrib"], correct:0, exp:["Correct — The lamina is the broad, green part (blade) of the leaf.","Incorrect — The petiole lifts the lamina above the level of the stem; it is not the broad green blade itself.","Incorrect — Veins are the vascular strands within the lamina, not the whole broad green part.","Incorrect — The midrib is the central vein of the lamina, not the whole broad green part."]},
+{id:48, set:2, tag:"SSC CHSL 17/03/2023 (4th Shift)", q:"The green plants in a terrestrial ecosystem capture about _______ percent of the energy of sunlight that falls on their leaves and convert it into food energy.", options:["20","10","1","5"], correct:2, exp:["Incorrect — 20% overstates the actual fraction captured.","Incorrect — 10% overstates the actual fraction captured.","Correct — Green plants capture only about 1% of the sunlight energy falling on their leaves and convert it into food energy via photosynthesis.","Incorrect — 5% overstates the actual fraction captured."]},
+{id:49, set:2, tag:"SSC CGL 06/12/2022 (4th Shift)", q:"Which nutrient is chlorella rich in ?", options:["Roughage","Carbohydrates","Fats","Protein"], correct:3, exp:["Incorrect — Roughage is not the nutrient chlorella is known for.","Incorrect — Carbohydrates are not chlorella's defining nutrient.","Incorrect — Fats are not chlorella's defining nutrient.","Correct — Chlorella, known as 'space alga', is rich in protein and is used by astronauts for CO2 consumption and oxygen production."]},
+{id:50, set:2, tag:"SSC CGL 12/12/2022 (4th Shift)", q:"Iron, iodine and zinc can be considered as which of the following?", options:["Macronutrients","Micronutrients","Steroid hormone inducer","Non - essential nutrients"], correct:1, exp:["Incorrect — Macronutrients are needed in large amounts (e.g. carbohydrates, proteins, fats), unlike iron, iodine and zinc.","Correct — Iron, iodine and zinc are micronutrients — required by the body in lesser amounts for growth and development.","Incorrect — They are not classified as steroid hormone inducers.","Incorrect — They are essential nutrients, not non-essential ones."]},
+
+// ---------------- SET 3 ----------------
+{id:51, set:3, tag:"SSC CPO 10/11/2022 (Evening)", q:"Which of the following pairs of plastids- thing stored is NOT correct? I. Amyloplasts - oils and fats II. Aleuroplasts - carbohydrates", options:["Only I","Both I and II","Neither I nor II","Only II"], correct:2, exp:["Incorrect — Statement I alone being wrong does not match the intended answer for this pairing.","Incorrect — 'Both I and II' does not match the intended answer for this pairing.","Correct — As per the source, plastids such as leucoplasts store starch along with proteins, fats and oils in different specialised forms across plant tissues.","Incorrect — 'Only II' does not match the intended answer for this pairing."]},
+{id:52, set:3, tag:"SSC CHSL 30/05/2022 (Evening)", q:"How is food stored in brown algae?", options:["In the form of glucose","In the form of complex carbohydrates that may be in the form of laminarin or mannitol.","In the form of complex lipids","In the form of oil droplets"], correct:1, exp:["Incorrect — Glucose is not the primary storage form in brown algae.","Correct — Brown algae store food primarily as complex carbohydrates — laminarin (a polysaccharide) and mannitol (a sugar alcohol) — as energy reserves.","Incorrect — Complex lipids are not the primary storage form in brown algae.","Incorrect — Oil droplets are not the primary storage form in brown algae."]},
+{id:53, set:3, tag:"SSC CGL 11/04/2022 (Morning)", q:"Pneumatophores are specialised ______ in hydrophytes.", options:["seeds","roots","fruits","flowers"], correct:1, exp:["Incorrect — Pneumatophores are not specialised seeds.","Correct — Pneumatophores are specialised roots in hydrophytes (aquatic plants) that help with gas exchange in waterlogged conditions.","Incorrect — Pneumatophores are not specialised fruits.","Incorrect — Pneumatophores are not specialised flowers."]},
+{id:54, set:3, tag:"SSC CGL 17/08/2021 (Evening)", q:"Which of the following does NOT figure among the main functions of the root system of a plant ?", options:["Supply of food to plant parts","Providing a proper anchorage to the plant parts","Absorption of water from the soil","Absorption of minerals from the soil"], correct:0, exp:["Correct — Supplying food to plant parts is NOT a root function; roots transport water and minerals, while phloem tissue transports food.","Incorrect (this IS a root function) — Roots do provide proper anchorage to plant parts.","Incorrect (this IS a root function) — Roots do absorb water from the soil.","Incorrect (this IS a root function) — Roots do absorb minerals from the soil."]},
+{id:55, set:3, tag:"SSC CGL 23/08/2021 (Morning)", q:"Which of the following plant hormones regulates growth, particularly by stimulating cell elongation in stems?", options:["Auxin","Ethylene","Cytokinin","Gibberellin"], correct:0, exp:["Correct — Auxin regulates growth by stimulating cell elongation, particularly in stems.","Incorrect — Ethylene is a gaseous hormone that mainly regulates fruit ripening.","Incorrect — Cytokinin mainly promotes cell division in roots and shoots.","Incorrect — Gibberellin mainly regulates germination, dormancy, flowering and senescence."]},
+{id:56, set:3, tag:"Ssc phase 13, 24/07/2025", q:"Which of the following statements correctly describes how unicellular organisms obtain their food?", options:["All unicellular organisms use a mouth-like structure for food intake","Unicellular organisms like Amoeba use pseudopodia, while Paramecium uses cilia to direct food into a fixed spot","Unicellular organisms such as Amoeba and Paramecium absorb food randomly from all over the cell surface","Unicellular organisms digest food externally before taking it into their bodies"], correct:1, exp:["Incorrect — Not all unicellular organisms use a mouth-like structure; methods vary between species.","Correct — Amoeba uses temporary pseudopodia to engulf food (phagocytosis), while Paramecium uses cilia to sweep food into a fixed oral groove.","Incorrect — Food intake is not random across the whole cell surface in these organisms; each has a specific mechanism.","Incorrect — This describes external/saprotrophic digestion (like fungi), not how Amoeba/Paramecium feed."]},
+{id:57, set:3, tag:"SSC CGL Tier 1, 25 Sep 2025 (Shift-2)", q:"Which of the following complexes is also called a light-harvesting complex?", options:["Antenna complex","ATP synthase complex","Ribosome complex","Spliceosome complex"], correct:0, exp:["Correct — The Antenna complex, also called the Light-Harvesting Complex (LHC), captures light energy and transfers it to the reaction centre of the photosystem.","Incorrect — The ATP synthase complex produces ATP using a proton gradient, it does not harvest light.","Incorrect — The Ribosome complex is involved in protein synthesis, unrelated to light harvesting.","Incorrect — The Spliceosome complex processes RNA splicing, unrelated to light harvesting."]},
+{id:58, set:3, tag:"SSC CHSL, 12 Nov 2025 (Shift-3)", q:"Which organ of digestive system secretes the enzyme lipase for digesting emulsified fats in humans?", options:["Gall bladder","Liver","Pancreas","Small intestine"], correct:2, exp:["Incorrect — The gall bladder only stores and concentrates bile; it does not secrete digestive enzymes.","Incorrect — The liver produces bile, which emulsifies fat, but does not itself contain digestive enzymes.","Correct — The pancreas secretes pancreatic juice containing lipase, which digests emulsified fats into fatty acids and glycerol.","Incorrect — The small intestine is where digestion of fat occurs, but the lipase enzyme itself is secreted by the pancreas."]},
+{id:59, set:3, tag:"SSC CHSL, 15 Nov 2025 (Shift-3)", q:"Which of the following organ is the longest part of the alimentary canal in the humans?", options:["Liver","Small intestine","Buccal cavity","Oesophagus"], correct:1, exp:["Incorrect — The liver is not part of the alimentary canal's length; it's an accessory digestive gland.","Correct — The small intestine, about 6–7 metres long, is the longest part of the human alimentary canal.","Incorrect — The buccal cavity is just the mouth region, far shorter than the small intestine.","Incorrect — The oesophagus is a muscular tube connecting mouth to stomach, much shorter than the small intestine."]},
+{id:60, set:3, tag:"SSC CHSL, 17 Nov 2025 (Shift-1)", q:"Among the following organs, which is located on uppermost part of a human body?", options:["Buccal Cavity","Anus","Bile Duct","Appendix"], correct:0, exp:["Correct — The Buccal Cavity (mouth) is located in the head region, making it the uppermost organ among the options.","Incorrect — The anus is at the lower termination of the alimentary canal.","Incorrect — The bile duct is in the upper abdomen, lower than the head region.","Incorrect — The appendix is in the lower right abdomen, attached to the large intestine."]},
+{id:61, set:3, tag:"SSC CHSL, 24 Nov 2025 (Shift-3)", q:"What is the primary function of hydrochloric acid in the stomach of humans?", options:["To neutralize the food","To create an alkaline medium","To create an acidic medium for enzyme action","To avoid digestion of proteins"], correct:2, exp:["Incorrect — HCl does not neutralize food; bile in the small intestine neutralizes acidic chyme.","Incorrect — HCl creates an acidic, not alkaline, medium.","Correct — HCl creates an acidic medium (pH 1.5–3.5) essential for activating pepsinogen into active pepsin, which digests proteins, and also kills harmful bacteria.","Incorrect — HCl actually enables (not avoids) protein digestion by activating pepsin."]},
+{id:62, set:3, tag:"SSC CHSL, 26 Nov 2025 (Shift-1)", q:"Which of the following enzyme is secreted by the pancreas for digesting emulsified fats in humans?", options:["Amylase","Lipase","Trypsin","Lactase"], correct:1, exp:["Incorrect — Amylase (pancreatic) digests carbohydrates (starch), not fats.","Correct — Lipase, secreted by the pancreas, digests emulsified fats into fatty acids and glycerol.","Incorrect — Trypsin digests proteins, not fats.","Incorrect — Lactase is an intestinal enzyme (not primarily pancreatic) that digests lactose sugar."]},
+{id:63, set:3, tag:"SSC CHSL, 27 Nov 2025 (Shift-1)", q:"The biological catalysts which help in the breakdown of food in humans known as:", options:["Lymph","Mucus","Enzymes","Bile"], correct:2, exp:["Incorrect — Lymph carries digested/absorbed fats and fluid, it is not a catalyst.","Incorrect — Mucus lubricates and protects the digestive tract, it is not a catalyst.","Correct — Enzymes are specialized proteins that act as biological catalysts, accelerating the breakdown of carbohydrates, proteins and fats.","Incorrect — Bile emulsifies fats but contains no digestive enzymes."]},
+{id:64, set:3, tag:"SSC CHSL, 27 Nov 2025 (Shift-2)", q:"When do desert plants typically take up carbon dioxide?", options:["Only during the day","Only during the night","Both day and night","Neither day nor night"], correct:1, exp:["Incorrect — Desert plants keep stomata closed during the hot day to minimise water loss.","Correct — Desert plants (xerophytes) using CAM take up CO2 only during the night, when stomata are open, storing it as malic acid for use during the day.","Incorrect — They do not take up CO2 during the day, when stomata are closed.","Incorrect — They do take up CO2 at night, so it is not 'neither'."]},
+{id:65, set:3, tag:"SSC MTS, 05 Feb 2026 (Shift-1)", q:"Which of the following uses a parasitic nutritive strategy? 1. Cuscuta 2. Ticks", options:["Only I","Only II","Neither I nor II","Both I and II"], correct:3, exp:["Incorrect — Ticks also use a parasitic strategy, so it isn't only Cuscuta.","Incorrect — Cuscuta also uses a parasitic strategy, so it isn't only Ticks.","Incorrect — Both are indeed parasitic, so it isn't neither.","Correct — Both Cuscuta (a parasitic plant that steals nutrients from host plants) and Ticks (ectoparasites feeding on animal blood) use a parasitic nutritive strategy."]},
+{id:66, set:3, tag:"SSC MTS, 09 Feb 2026 (Shift-3)", q:"What is the name of the food pipe which takes food from the mouth to the stomach in humans?", options:["Bladder","Spleen","Trachea","Oesophagus"], correct:3, exp:["Incorrect — The bladder stores urine, unrelated to digestion.","Incorrect — The spleen filters blood, unrelated to digestion.","Incorrect — The trachea is the windpipe for breathing.","Correct — The oesophagus (food pipe) is a muscular tube that transports swallowed food from mouth to stomach via peristalsis."]},
+{id:67, set:3, tag:"SSC MTS, 11 Feb 2026 (Shift-3)", q:"Lymph carries digested and absorbed fat from _____ and drains excess fluid from extra cellular space back into the blood.", options:["Liver","Kidneys","Pancreas","Intestine"], correct:3, exp:["Incorrect — The liver produces bile to emulsify fats, but lymph doesn't carry fat from the liver in this context.","Incorrect — Kidneys filter waste from blood, unrelated to this lymph function.","Incorrect — The pancreas secretes digestive enzymes, unrelated to this lymph function.","Correct — Lacteals in the intestinal villi absorb dietary lipids too large for blood capillaries, and lymph carries these fats away from the intestine."]},
+{id:68, set:3, tag:"SSC MTS, 16 Feb 2026 (Shift-1)", q:"Which part of the digestive system absorbs the most water from unabsorbed food in humans?", options:["Stomach","Liver","Small intestine","Large intestine"], correct:3, exp:["Incorrect — The stomach churns and breaks down food with acid, it does not primarily absorb water.","Incorrect — The liver produces bile, it does not absorb water from food.","Incorrect — The small intestine absorbs almost all digested nutrients, not primarily water from unabsorbed matter.","Correct — The large intestine (colon) absorbs the maximum remaining water and electrolytes from unabsorbed food, solidifying waste into feces."]},
+{id:69, set:3, tag:"SSC MTS, 17 Feb 2026 (Shift-1)", q:"How many carbon atoms are present in one molecule of glucose?", options:["3","4","5","6"], correct:3, exp:["Incorrect — 3 carbons describes a triose sugar like glyceraldehyde, not glucose.","Incorrect — Glucose does not have 4 carbon atoms.","Incorrect — 5 carbons describes a pentose sugar like ribose, not glucose.","Correct — Glucose (C6H12O6) has exactly 6 carbon atoms, serving as a hexose sugar and primary energy source."]},
+{id:70, set:3, tag:"SSC MTS, 17 Feb 2026 (Shift-2)", q:"Which of the following statement is correct regarding saliva? 1. Saliva is secreted by salivary glands. 2. Saliva contains an enzyme called salivary amylase.", options:["Only I","Only II","Both I and II","Neither I nor II"], correct:2, exp:["Incorrect — Statement 2 is also correct, so it isn't only Statement I.","Incorrect — Statement 1 is also correct, so it isn't only Statement II.","Correct — Saliva is secreted by three pairs of salivary glands and contains salivary amylase (ptyalin), which begins starch digestion in the mouth.","Incorrect — Both statements are actually correct, not neither."]},
+{id:71, set:3, tag:"SSC MTS, 18 Feb 2026 (Shift-1)", q:"What is dental plaque composed of in humans? 1. Bacterial cells 2. Food particles", options:["Only I","Only II","Both I and II","Neither I nor II"], correct:2, exp:["Incorrect — Food particles are also part of dental plaque, so it isn't only bacterial cells.","Incorrect — Bacterial cells are also part of dental plaque, so it isn't only food particles.","Correct — Dental plaque is a biofilm composed of both bacterial cells and leftover food particles, along with saliva, which can lead to cavities if not removed.","Incorrect — Both statements are correct, not neither."]},
+{id:72, set:3, tag:"SSC MTS, 18 Feb 2026 (Shift-3)", q:"Which of the following statements correctly describes the primary function of teeth in the human digestive system?", options:["They crush and grind the food into smaller particles","They produce saliva","They absorb nutrients from the food","They secrete digestive enzymes"], correct:0, exp:["Correct — Teeth perform the primary mechanical function of mastication (chewing), crushing and grinding food into smaller particles to increase surface area for enzymes.","Incorrect — Saliva is produced by the salivary glands, not the teeth.","Incorrect — Nutrient absorption happens in the small intestine, not through teeth.","Incorrect — Digestive enzymes are secreted by glands (salivary glands, pancreas, etc.), not by teeth."]},
+{id:73, set:3, tag:"SSC MTS, 19 Feb 2026 (Shift-2)", q:"On which food component does the salivary amylase act on in humans?", options:["Protein","Fats","Vitamins","Starch"], correct:3, exp:["Incorrect — Salivary amylase has no digestive effect on proteins (digested by pepsin/trypsin).","Incorrect — Salivary amylase has no digestive effect on fats (digested by lipases).","Incorrect — Salivary amylase has no digestive effect on vitamins.","Correct — Salivary amylase (ptyalin) acts on starch, converting it into simpler sugars like maltose right in the mouth."]},
+{id:74, set:3, tag:"SSC CPO, 09 Dec 2025 (Shift-1)", q:"Read the below statements about the human digestive system: 1. Bile emulsifies fats but does not contain enzymes. 2. Trypsinogen is activated to trypsin in the stomach. 3. Villi in small intestine increase surface area for absorption.", options:["Only 1 and 2 are correct","Only 1 and 3 are correct","Only 2 and 3 are correct","1, 2 and 3 all are correct"], correct:1, exp:["Incorrect — Statement 2 is incorrect, so 1 and 2 together cannot both be right.","Correct — Statement 1 is correct (bile emulsifies fats without enzymes) and Statement 3 is correct (villi increase absorption surface area); Statement 2 is wrong because trypsinogen is activated in the small intestine by enterokinase, not in the stomach.","Incorrect — Statement 2 is incorrect, so 2 and 3 together cannot both be right.","Incorrect — Statement 2 is incorrect, so not all three can be correct."]},
+{id:75, set:3, tag:"Head Constable (AWO)/(TPO) Delhi Police, 20 Jan 2026 (Shift-1)", q:"Which of the following correctly identifies the acid present in human gastric juice and explains its function?", options:["Sulphuric acid - aids digestion of fats","Nitric acid - breaks down proteins","Hydrochloric acid - creates acidic medium for enzyme activity","Acetic acid - emulsifies fats"], correct:2, exp:["Incorrect — The human stomach does not produce sulphuric acid.","Incorrect — The human stomach does not produce nitric acid.","Correct — The stomach secretes Hydrochloric Acid (HCl), creating the acidic medium (pH 1.5–2.0) needed to activate pepsin for protein digestion, and it also kills harmful bacteria.","Incorrect — Acetic acid is not present in gastric juice; bile (not an acid) emulsifies fats."]},
+
+// ---------------- SET 4 ----------------
+{id:76, set:4, tag:"Head Constable (AWO)/(TPO) Delhi Police, 20 Jan 2026 (Shift-3)", q:"In living organisms, a wide range of biochemical reactions occur rapidly, are accelerated by highly specific biological molecules that lower the activation energy without being consumed during the process. What are such naturally occurring biological catalysts commonly known as?", options:["Promoters","Inhibitors","Enzymes","Adsorbents"], correct:2, exp:["Incorrect — Promoters serve different biochemical roles in genetic regulation, not catalysis.","Incorrect — Inhibitors do the exact opposite of catalysts — they slow reactions down.","Correct — Enzymes are highly specialized protein catalysts that accelerate biochemical reactions by lowering activation energy, without being consumed themselves.","Incorrect — Adsorbents serve roles in molecular binding, not biochemical catalysis."]},
+{id:77, set:4, tag:"Head Constable (AWO)/(TPO) Delhi Police, 21 Jan 2026 (Shift-2)", q:"In dairy industries, milk is converted into curd by adding a small amount of previously prepared curd as a starter culture. During this process, bacteria convert lactose present in milk into lactic acid, resulting in a change in taste, texture and composition of milk. This transformation is best classified as:", options:["A physical change because only texture changes","A reversible change because milk can be recovered","A chemical change because new substances are formed","A temporary change with no permanent effect"], correct:2, exp:["Incorrect — More than texture changes; new chemical substances (lactic acid) are formed.","Incorrect — Curdled milk cannot be reversed back to its original fresh state.","Correct — Lactic acid bacteria convert lactose into lactic acid, an entirely new substance that permanently coagulates milk proteins into curd — a chemical change.","Incorrect — The change is permanent, not temporary."]},
+{id:78, set:4, tag:"Delhi Police Constable, 29 Dec 2025 (Shift-3)", q:"Which organ serves as the storage site for bile, releasing it into the small intestine when fats are ingested for proper digestion?", options:["Liver","Pancreas","Stomach","Gall bladder"], correct:3, exp:["Incorrect — The liver produces bile but is not the storage reservoir.","Incorrect — The pancreas produces digestive enzymes and insulin, not bile storage.","Incorrect — The stomach churns food with acid; it does not store bile.","Correct — The gall bladder stores and concentrates bile produced by the liver, releasing it into the small intestine when fatty food is ingested."]},
+{id:79, set:4, tag:"Delhi Police Constable, 31 Dec 2025 (Shift-2)", q:"Certain organs in the human body filter toxins and store energy reserves. Which organ is responsible for detoxifying blood and storing glycogen?", options:["Pancreas","Spleen","Kidney","Liver"], correct:3, exp:["Incorrect — The pancreas produces digestive enzymes and insulin, not primary detoxification/glycogen storage.","Incorrect — The spleen filters blood cells, not the primary detoxification organ.","Incorrect — The kidney filters waste from blood but does not store glycogen.","Correct — The liver detoxifies harmful chemicals, drugs and alcohol in the blood, and stores excess glucose as glycogen for future energy needs."]},
+{id:80, set:4, tag:"Delhi Police Constable, 02 Jan 2026 (Shift-2)", q:"What are oligosaccharides?", options:["Carbohydrates that yield one monosaccharide unit on hydrolysis","Carbohydrates that yield more than 10 monosaccharide units on hydrolysis","Carbohydrates that yield two to ten monosaccharide units on hydrolysis","Carbohydrates that do not yield any monosaccharide units"], correct:2, exp:["Incorrect — Carbohydrates yielding one unit on hydrolysis are simply monosaccharides.","Incorrect — Carbohydrates yielding more than ten units are classified as polysaccharides.","Correct — Oligosaccharides are carbohydrates that yield between two and ten monosaccharide units on hydrolysis, e.g. sucrose and lactose.","Incorrect — All carbohydrates yield monosaccharide units on hydrolysis; this option is not valid."]},
+{id:81, set:4, tag:"Delhi Police Constable, 03 Jan 2026 (Shift-2)", q:"Which organ in the human body produces bile, a digestive fluid that helps emulsify fats for absorption in the small intestine?", options:["Pancreas","Liver","Gall bladder","Duodenum"], correct:1, exp:["Incorrect — The pancreas produces digestive enzymes and insulin, not bile.","Correct — The liver is the organ that produces bile, essential for emulsifying fat globules into smaller droplets for digestion.","Incorrect — The gall bladder only stores and concentrates bile; it does not produce it.","Incorrect — The duodenum is where digestion occurs using bile, but it does not produce bile."]},
+{id:82, set:4, tag:"Delhi Police Constable, 05 Jan 2026 (Shift-3)", q:"Which macronutrient is Lipase, an enzyme, primarily responsible for breaking down into fatty acids and glycerol for absorption in the human digestive system?", options:["Carbohydrates","Proteins","DNA","Fats"], correct:3, exp:["Incorrect — Carbohydrates are broken down by enzymes like amylase, not lipase.","Incorrect — Proteins are digested by proteases like pepsin and trypsin, not lipase.","Incorrect — DNA is digested by nucleases, not lipase.","Correct — Lipase (mainly secreted by the pancreas) breaks down dietary fats (triglycerides) into fatty acids and glycerol."]},
+{id:83, set:4, tag:"Delhi Police Constable, 06 Jan 2026 (Shift-3)", q:"Which part of the human digestive system is primarily responsible for absorbing nutrients such as carbohydrates, proteins, fats, vitamins, and minerals?", options:["Stomach","Large intestine","Small intestine","Liver"], correct:2, exp:["Incorrect — The stomach mainly churns and breaks down food with acid, it doesn't absorb most nutrients.","Incorrect — The large intestine mainly absorbs water, not most nutrients.","Correct — The small intestine, lined with villi and microvilli that maximise surface area, is primarily responsible for absorbing nearly all nutrients into the bloodstream.","Incorrect — The liver produces bile; it is not the primary site of nutrient absorption."]},
+{id:84, set:4, tag:"Delhi Police Constable, 22 Dec 2025 (Shift-1)", q:"What is the first step in breaking down glucose in cells?", options:["Conversion of glucose into ethanol","Breakdown of glucose into pyruvate","Release of energy from pyruvate","Conversion of pyruvate into lactic acid"], correct:1, exp:["Incorrect — Conversion into ethanol is a later, secondary anaerobic fermentation step, not the first.","Correct — Glycolysis, the first and universal step of cellular respiration, breaks down six-carbon glucose into two three-carbon pyruvate molecules, occurring in the cytoplasm.","Incorrect — Release of energy from pyruvate happens after pyruvate is already formed, deep inside the mitochondria.","Incorrect — Conversion to lactic acid is a later, secondary anaerobic fermentation step, not the first."]},
+{id:85, set:4, tag:"Delhi Police Constable, 23 Dec 2025 (Shift-1)", q:"Which organisms break down food material outside their bodies and then absorb it?", options:["Animals like cows and lions","Plants like grass and trees","Parasites like cuscuta and tape-worms","Fungi like bread moulds, yeast, and mushrooms"], correct:3, exp:["Incorrect — Animals like cows and lions exhibit holozoic nutrition, digesting food internally.","Incorrect — Plants are autotrophs that make their own food through photosynthesis, not external digestion.","Incorrect — Parasites like cuscuta and tapeworms derive ready-made nutrients directly from a living host, without external digestion.","Correct — Saprotrophic fungi like bread moulds, yeast, and mushrooms secrete enzymes onto dead/decaying matter to digest it externally before absorbing the nutrients."]},
+];
+
+const SET_INFO = {
+  1: {name: "Set 1", title: "Nutrition in Animals — I", count: 25},
+  2: {name: "Set 2", title: "Nutrition in Animals — II & Nutrition in Plants — I", count: 25},
+  3: {name: "Set 3", title: "Nutrition in Plants — II & Digestion — I", count: 25},
+  4: {name: "Set 4", title: "Digestion — II", count: 10}
+};
+
+</script>
+
+<script>
+(function(){
+  "use strict";
+  const LOGO_SRC = "data:image/jpeg;base64,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";
+  document.getElementById('brandLogo').src = LOGO_SRC;
+  document.getElementById('regLogo').src = LOGO_SRC;
+
+  const OPT_LETTERS = ['A','B','C','D'];
+  const LS_NAME = 'bq5_username';
+  const LS_SET_PREFIX = 'bq5tb_set_';
+  const SEC_PER_Q = 36; // 36 seconds per question, per set of 25 questions
+
+  let currentUser = localStorage.getItem(LS_NAME) || '';
+  let activeSetId = null;
+  let qList = [];
+  let curIdx = 0;
+  let answers = {};
+  let marked = {};
+  let visited = {};
+  let submitted = false;
+  let reviewIdx = 0;
+  let reviewFilter = 'all';
+  let timerInterval = null;
+  let startTime = null;
+  let durationSec = 0;
+
+  function questionsForSet(setId){ return QUESTIONS.filter(q => q.set === setId); }
+  function getSetState(setId){
+    const raw = localStorage.getItem(LS_SET_PREFIX + setId);
+    return raw ? JSON.parse(raw) : null;
+  }
+  function saveSetState(setId){
+    const state = { answers, marked, submitted, startTime, timestamp: Date.now() };
+    localStorage.setItem(LS_SET_PREFIX + setId, JSON.stringify(state));
+  }
+  function show(id){
+    ['screen-register','screen-sets','screen-instructions','screen-quiz','screen-result'].forEach(s=>{
+      document.getElementById(s).classList.toggle('hidden', s !== id);
+    });
+  }
+  function refreshUserChip(){
+    document.getElementById('userChipName').textContent = currentUser;
+  }
+  function initials(name){
+    const p = name.trim().split(/\s+/);
+    return ((p[0]||'')[0]||'?').toUpperCase();
+  }
+
+  // ---------- Screen 1: Registration ----------
+  const nameInput = document.getElementById('nameInput');
+  const nameErr = document.getElementById('nameErr');
+  document.getElementById('startBtn').addEventListener('click', ()=>{
+    const val = nameInput.value.trim();
+    if(!val){ nameErr.textContent = 'Please enter your name to continue.'; return; }
+    if(val.length < 2){ nameErr.textContent = 'Name looks too short — please check.'; return; }
+    nameErr.textContent = '';
+    currentUser = val;
+    localStorage.setItem(LS_NAME, val);
+    refreshUserChip();
+    renderSetGrid();
+    show('screen-sets');
+  });
+  nameInput.addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('startBtn').click(); });
+
+  // ---------- Screen 2: Set selection ----------
+  function fmtMMSS(totalSec){
+    totalSec = Math.max(0, Math.round(totalSec));
+    const m = Math.floor(totalSec/60), s = totalSec%60;
+    return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+
+  function renderSetGrid(){
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    Object.keys(SET_INFO).forEach(key=>{
+      const setId = parseInt(key);
+      const info = SET_INFO[setId];
+      const state = getSetState(setId);
+      const card = document.createElement('div');
+      card.className = 'card set-card';
+      let ribbon = '';
+      let metaRow = `<span class="pill">${info.count} Questions</span><span class="pill">${fmtMMSS(info.count*SEC_PER_Q)} min</span>`;
+      let actionsHtml = `<button class="btn btn-primary btn-sm" style="width:auto;margin-top:0;" data-action="start" data-set="${setId}">Start Test →</button>`;
+
+      if(state && state.submitted){
+        const total = info.count;
+        let correct = 0;
+        questionsForSet(setId).forEach(q=>{ if(state.answers[q.id] === q.correct) correct++; });
+        ribbon = `<div class="ribbon">DONE</div>`;
+        metaRow += `<span class="pill score">Score: ${correct}/${total}</span>`;
+        actionsHtml = `
+          <button class="btn btn-purple-outline btn-sm" data-action="review" data-set="${setId}">View Analysis</button>
+          <button class="btn btn-grey btn-sm" data-action="reattempt" data-set="${setId}">Reattempt</button>`;
+      } else if(state && !state.submitted && Object.keys(state.answers||{}).length>0){
+        const attempted = Object.keys(state.answers||{}).length;
+        metaRow += `<span class="pill">In progress (${attempted}/${info.count})</span>`;
+        actionsHtml = `<button class="btn btn-primary btn-sm" style="width:auto;margin-top:0;" data-action="resume" data-set="${setId}">Resume Test →</button>`;
+      }
+
+      card.innerHTML = `
+        ${ribbon}
+        <div class="set-num">${setId}</div>
+        <h3>${info.name}: ${info.title}</h3>
+        <div class="set-desc">Full-length mock test format with palette navigation &amp; detailed analysis.</div>
+        <div class="meta-row">${metaRow}</div>
+        <div class="actions">${actionsHtml}</div>
+      `;
+      grid.appendChild(card);
+    });
+
+    grid.querySelectorAll('button[data-action]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const setId = parseInt(btn.getAttribute('data-set'));
+        const action = btn.getAttribute('data-action');
+        if(action === 'start'){ openInstructions(setId, true); }
+        else if(action === 'resume'){ openAttempt(setId, false); }
+        else if(action === 'reattempt'){ openInstructions(setId, true); }
+        else if(action === 'review'){ openReview(setId); }
+      });
+    });
+  }
+
+  document.getElementById('resultBackBtn').addEventListener('click', ()=>{ stopTimer(); renderSetGrid(); show('screen-sets'); });
+
+  // ---------- Screen 2b: Instructions ----------
+  let pendingSetId = null;
+  function openInstructions(setId, forceReset){
+    pendingSetId = setId;
+    const info = SET_INFO[setId];
+    document.getElementById('instrTitle').textContent = `${info.name}: ${info.title}`;
+    document.getElementById('instrCount').textContent = info.count;
+    document.getElementById('instrDuration').textContent = fmtMMSS(info.count*SEC_PER_Q);
+    document.getElementById('agreeCheck').checked = false;
+    document.getElementById('instrStartBtn').disabled = true;
+    document.getElementById('instrStartBtn').onclick = ()=>{ openAttempt(setId, forceReset); };
+    show('screen-instructions');
+  }
+  document.getElementById('agreeCheck').addEventListener('change', (e)=>{
+    document.getElementById('instrStartBtn').disabled = !e.target.checked;
+  });
+  document.getElementById('instrBackBtn').addEventListener('click', ()=>{ renderSetGrid(); show('screen-sets'); });
+
+  // ---------- Screen 3: Attempt ----------
+  function openAttempt(setId, forceReset){
+    activeSetId = setId;
+    qList = questionsForSet(setId);
+    durationSec = qList.length * SEC_PER_Q;
+    const state = getSetState(setId);
+    if(forceReset || !state){
+      answers = {}; marked = {}; visited = {}; submitted = false; startTime = Date.now();
+    } else {
+      answers = state.answers || {};
+      marked = state.marked || {};
+      visited = {};
+      qList.forEach(q=>{ if(answers[q.id]!==undefined) visited[q.id]=true; });
+      submitted = false;
+      startTime = state.startTime || Date.now();
+    }
+    curIdx = 0;
+    saveSetState(setId);
+
+    const info = SET_INFO[setId];
+    document.getElementById('quizTestName').innerHTML = `${info.name}: ${info.title}<span>Biology Quiz 5</span>`;
+    document.getElementById('sideUname').textContent = currentUser;
+    document.getElementById('sideAvatar').textContent = initials(currentUser);
+    document.getElementById('sideSetName').textContent = `${info.name} · ${info.count} Qs`;
+
+    show('screen-quiz');
+    renderAttemptQuestion();
+    renderPalette();
+    startTimer();
+  }
+
+  function startTimer(){
+    stopTimer();
+    updateTimerDisplay();
+    timerInterval = setInterval(()=>{
+      const elapsed = (Date.now() - startTime)/1000;
+      const remaining = durationSec - elapsed;
+      if(remaining <= 0){
+        updateTimerDisplay(0);
+        stopTimer();
+        doSubmit(true);
+        return;
+      }
+      updateTimerDisplay(remaining);
+    }, 1000);
+  }
+  function stopTimer(){ if(timerInterval){ clearInterval(timerInterval); timerInterval=null; } }
+  function updateTimerDisplay(remainingOverride){
+    const elapsed = (Date.now() - startTime)/1000;
+    const remaining = remainingOverride!==undefined ? remainingOverride : Math.max(0, durationSec - elapsed);
+    document.getElementById('timerText').textContent = fmtMMSS(remaining);
+    document.getElementById('timerPill').classList.toggle('low', remaining <= 120);
+  }
+
+  function renderAttemptQuestion(){
+    const q = qList[curIdx];
+    visited[q.id] = true;
+    document.getElementById('qNumLabel').innerHTML = `Question ${curIdx+1} of ${qList.length} <span class="marks-tag">+1 / 0</span>`;
+    document.getElementById('qExamTag').textContent = q.tag;
+    document.getElementById('qText').textContent = q.q;
+
+    const optList = document.getElementById('optList');
+    optList.innerHTML = '';
+    q.options.forEach((opt, i)=>{
+      const div = document.createElement('div');
+      div.className = 'opt' + (answers[q.id]===i ? ' selected' : '');
+      div.innerHTML = `<div class="optlabel">${OPT_LETTERS[i]}</div><div class="opttext">${opt}</div>`;
+      div.addEventListener('click', ()=>{
+        answers[q.id] = i;
+        saveSetState(activeSetId);
+        renderAttemptQuestion();
+        renderPalette();
+      });
+      optList.appendChild(div);
+    });
+
+    document.getElementById('markBtn').textContent = marked[q.id] ? 'Unmark Review' : 'Mark for Review & Next';
+    document.getElementById('prevBtn').disabled = curIdx === 0;
+    const isLast = curIdx === qList.length - 1;
+    document.getElementById('saveNextBtn').textContent = isLast ? 'Save' : 'Save & Next →';
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', ()=>{ if(curIdx>0){ curIdx--; renderAttemptQuestion(); renderPalette(); }});
+  document.getElementById('saveNextBtn').addEventListener('click', ()=>{
+    if(curIdx<qList.length-1){ curIdx++; renderAttemptQuestion(); renderPalette(); }
+    else { openSubmitModal(); }
+  });
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    const q = qList[curIdx];
+    delete answers[q.id];
+    saveSetState(activeSetId);
+    renderAttemptQuestion();
+    renderPalette();
+  });
+  document.getElementById('markBtn').addEventListener('click', ()=>{
+    const q = qList[curIdx];
+    marked[q.id] = !marked[q.id];
+    saveSetState(activeSetId);
+    if(curIdx<qList.length-1){ curIdx++; }
+    renderAttemptQuestion();
+    renderPalette();
+  });
+
+  function renderPalette(){
+    const grid = document.getElementById('paletteGrid');
+    grid.innerHTML = '';
+    qList.forEach((q, i)=>{
+      const btn = document.createElement('div');
+      const hasAns = answers[q.id]!==undefined;
+      const isMarked = !!marked[q.id];
+      let cls = 'pnum notvisited';
+      if(visited[q.id] && !hasAns) cls = 'pnum notanswered';
+      if(hasAns) cls = 'pnum answered';
+      if(isMarked) cls = 'pnum marked' + (hasAns ? ' hasans' : '');
+      if(i === curIdx) cls += ' cur';
+      btn.className = cls;
+      btn.textContent = i+1;
+      btn.addEventListener('click', ()=>{ curIdx = i; renderAttemptQuestion(); renderPalette(); });
+      grid.appendChild(btn);
+    });
+    const answeredCount = Object.keys(answers).length;
+    const markedCount = Object.values(marked).filter(Boolean).length;
+    const notVisitedCount = qList.filter(q=>!visited[q.id]).length;
+    document.getElementById('sideSummary').innerHTML = `
+      <div><span>Answered</span><b>${answeredCount}</b></div>
+      <div><span>Not Answered</span><b>${qList.length - answeredCount - notVisitedCount}</b></div>
+      <div><span>Not Visited</span><b>${notVisitedCount}</b></div>
+      <div><span>Marked for Review</span><b>${markedCount}</b></div>
+    `;
+  }
+
+  // ---------- Submit modal ----------
+  function openSubmitModal(){
+    const answeredCount = Object.keys(answers).length;
+    const markedCount = Object.values(marked).filter(Boolean).length;
+    const notVisitedCount = qList.filter(q=>!visited[q.id]).length;
+    const notAnswered = qList.length - answeredCount - notVisitedCount;
+    document.getElementById('modalAnswered').textContent = answeredCount;
+    document.getElementById('modalNotAnswered').textContent = notAnswered;
+    document.getElementById('modalMarked').textContent = markedCount;
+    document.getElementById('modalNotVisited').textContent = notVisitedCount;
+    document.getElementById('submitModal').classList.remove('hidden');
+  }
+  document.getElementById('submitTopBtn').addEventListener('click', openSubmitModal);
+  document.getElementById('finalSubmitBtn').addEventListener('click', openSubmitModal);
+  document.getElementById('modalCancelBtn').addEventListener('click', ()=>{ document.getElementById('submitModal').classList.add('hidden'); });
+  document.getElementById('modalConfirmBtn').addEventListener('click', ()=>{
+    document.getElementById('submitModal').classList.add('hidden');
+    doSubmit(false);
+  });
+
+  function doSubmit(auto){
+    stopTimer();
+    submitted = true;
+    saveSetState(activeSetId);
+    reviewFilter = 'all';
+    openReview(activeSetId);
+    renderSetGrid();
+    if(auto){
+      setTimeout(()=>{ alert('Time is up! Your test has been submitted automatically.'); }, 200);
+    }
+  }
+
+  // ---------- Screen 4: Review ----------
+  function openReview(setId){
+    activeSetId = setId;
+    qList = questionsForSet(setId);
+    const state = getSetState(setId);
+    answers = (state && state.answers) || {};
+    marked = (state && state.marked) || {};
+    reviewIdx = 0;
+    reviewFilter = 'all';
+
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active', b.getAttribute('data-filter')==='all'));
+
+    let correct=0, wrong=0, skipped=0;
+    qList.forEach(q=>{
+      const a = answers[q.id];
+      if(a===undefined) skipped++;
+      else if(a===q.correct) correct++;
+      else wrong++;
+    });
+    const total = qList.length;
+    document.getElementById('resultSetName').textContent = `${SET_INFO[setId].name}: ${SET_INFO[setId].title}`;
+    document.getElementById('resultScoreNum').textContent = `${correct} / ${total}`;
+    document.getElementById('statCorrect').textContent = correct;
+    document.getElementById('statWrong').textContent = wrong;
+    document.getElementById('statSkipped').textContent = skipped;
+    document.getElementById('statAccuracy').textContent = Math.round((correct/total)*100) + '%';
+
+    renderReviewPalette();
+    renderReviewQuestion();
+    show('screen-result');
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      reviewFilter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active', b===btn));
+      const idxList = filteredIndices();
+      if(idxList.length>0){ reviewIdx = idxList[0]; renderReviewQuestion(); }
+      renderReviewPalette();
+    });
+  });
+  function filteredIndices(){
+    return qList.map((q,i)=>i).filter(i=>{
+      const q = qList[i]; const a = answers[q.id];
+      if(reviewFilter==='all') return true;
+      if(reviewFilter==='correct') return a===q.correct;
+      if(reviewFilter==='wrong') return a!==undefined && a!==q.correct;
+      if(reviewFilter==='skipped') return a===undefined;
+      return true;
+    });
+  }
+
+  function renderReviewPalette(){
+    const grid = document.getElementById('rPaletteGrid');
+    grid.innerHTML = '';
+    const visible = new Set(filteredIndices());
+    qList.forEach((q,i)=>{
+      const a = answers[q.id];
+      let cls = 'pnum rev-skip-p';
+      if(a!==undefined) cls = (a===q.correct) ? 'pnum rev-correct-p' : 'pnum rev-wrong-p';
+      if(i===reviewIdx) cls += ' cur';
+      const btn = document.createElement('div');
+      btn.className = cls;
+      btn.style.opacity = visible.has(i) ? '1' : '.28';
+      btn.textContent = i+1;
+      btn.addEventListener('click', ()=>{ reviewIdx = i; renderReviewQuestion(); renderReviewPalette(); });
+      grid.appendChild(btn);
+    });
+    let correct=0, wrong=0, skipped=0;
+    qList.forEach(q=>{
+      const a = answers[q.id];
+      if(a===undefined) skipped++;
+      else if(a===q.correct) correct++;
+      else wrong++;
+    });
+    document.getElementById('rSideSummary').innerHTML = `
+      <div><span>Correct</span><b style="color:var(--tb-green)">${correct}</b></div>
+      <div><span>Wrong</span><b style="color:var(--tb-red)">${wrong}</b></div>
+      <div><span>Skipped</span><b>${skipped}</b></div>
+    `;
+  }
+
+  function renderReviewQuestion(){
+    const q = qList[reviewIdx];
+    const a = answers[q.id];
+    document.getElementById('rNumLabel').textContent = `Question ${reviewIdx+1} of ${qList.length}`;
+    document.getElementById('rExamTag').textContent = q.tag;
+    document.getElementById('rQText').textContent = q.q;
+
+    const banner = document.getElementById('rVerdictBanner');
+    banner.classList.remove('verdict-correct','verdict-wrong','verdict-skipped');
+    if(a===undefined){
+      banner.className = 'verdict-banner verdict-skipped';
+      banner.textContent = '⚠ Not Attempted — Correct answer highlighted below.';
+    } else if(a===q.correct){
+      banner.className = 'verdict-banner verdict-correct';
+      banner.textContent = '✓ Correct Answer!';
+    } else {
+      banner.className = 'verdict-banner verdict-wrong';
+      banner.textContent = '✗ Incorrect — your answer is shown below along with the correct one.';
+    }
+
+    const optList = document.getElementById('rOptList');
+    optList.innerHTML = '';
+    q.options.forEach((opt,i)=>{
+      const div = document.createElement('div');
+      let cls = 'opt rev-disabled';
+      if(i===q.correct) cls += ' rev-correct';
+      else if(i===a) cls += ' rev-wrong';
+      div.className = cls;
+      div.innerHTML = `<div class="optlabel">${OPT_LETTERS[i]}${i===a && a!==q.correct ? ' (Your choice)' : ''}${i===q.correct ? ' ✓' : ''}</div><div class="opttext">${opt}</div>`;
+      optList.appendChild(div);
+
+      const expDiv = document.createElement('div');
+      expDiv.className = 'explain-box ' + (i===q.correct ? 'exp-correct' : 'exp-wrong');
+      expDiv.textContent = q.exp[i];
+      optList.appendChild(expDiv);
+    });
+
+    const idxList = filteredIndices();
+    const pos = idxList.indexOf(reviewIdx);
+    document.getElementById('rPrevBtn').disabled = pos<=0;
+    document.getElementById('rNextBtn').disabled = pos===-1 || pos>=idxList.length-1;
+  }
+
+  document.getElementById('rPrevBtn').addEventListener('click', ()=>{
+    const idxList = filteredIndices(); const pos = idxList.indexOf(reviewIdx);
+    if(pos>0){ reviewIdx = idxList[pos-1]; renderReviewQuestion(); renderReviewPalette(); }
+  });
+  document.getElementById('rNextBtn').addEventListener('click', ()=>{
+    const idxList = filteredIndices(); const pos = idxList.indexOf(reviewIdx);
+    if(pos!==-1 && pos<idxList.length-1){ reviewIdx = idxList[pos+1]; renderReviewQuestion(); renderReviewPalette(); }
+  });
+
+  // ---------- Init ----------
+  if(currentUser){
+    refreshUserChip();
+    nameInput.value = currentUser;
+    renderSetGrid();
+    show('screen-sets');
+  } else {
+    show('screen-register');
+  }
+})();
+</script>
+</body>
+</html>
